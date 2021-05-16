@@ -25,6 +25,8 @@ public class WordMatch
     public String findBetterGuess( String guess1, String guess2 )
         {
         /* To be implemented in part (b) */
+
+        return ""; // TODO: Replace with actual
         }
 
     /**
@@ -39,6 +41,8 @@ public class WordMatch
     public int scoreGuess( String guess )
         {
         /* To be implemented in part (a) */
+
+        return 0; // TODO: Replace with actual
         }
 
     }

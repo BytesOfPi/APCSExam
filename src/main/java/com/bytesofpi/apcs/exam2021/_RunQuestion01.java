@@ -23,6 +23,7 @@ public class _RunQuestion01
         printQ1( "issipp", wm );
         printQ1( "mississippi", wm );
 
+        System.out.println();
         WordMatch game = new WordMatch( "aaaabb" );
         printQ1( "a", game );
         printQ1( "aa", game );
@@ -33,11 +34,12 @@ public class _RunQuestion01
 
     public static void printQ1( String guess, WordMatch wm )
         {
-        System.out.println( String.format( "Guess [%s] Val [%d] ", guess, wm.scoreGuess( guess ) ) );
+        System.out.println( String.format( "    Guess [%s] Val [%d] ", guess, wm.scoreGuess( guess ) ) );
         }
 
     private static void runPartB()
         {
+        System.out.println();
         System.out.println( "------------------------------------------------------" );
         System.out.println( "Question 1 (b)" );
         System.out.println();
@@ -53,7 +55,7 @@ public class _RunQuestion01
     public static void printQ2( String guess1, String guess2, WordMatch wm )
         {
         System.out.println(
-                String.format( "Guess1 Score [%s][%d] Guess1 Score [%s][%d] Best [%s] ",
+                String.format( "    Guess1 Score [%s][%d] Guess1 Score [%s][%d] Best [%s] ",
                         guess1, wm.scoreGuess( guess1 ),
                         guess2, wm.scoreGuess( guess2 ),
                         wm.findBetterGuess( guess1, guess2 ) ) );
