@@ -8,55 +8,36 @@ public class _RunQuestion02
 
         runPartA();
 
-        runPartB();
-
         }
 
     public static void runPartA()
         {
         System.out.println( "------------------------------------------------------" );
-        System.out.println( "Question 1 (a)" );
-        System.out.println();
-        WordMatch wm = new WordMatch( "mississippi" );
-        printQ1( "i", wm );
-        printQ1( "iss", wm );
-        printQ1( "issipp", wm );
-        printQ1( "mississippi", wm );
+        System.out.println( "Question 2" );
 
-        WordMatch game = new WordMatch( "aaaabb" );
-        printQ1( "a", game );
-        printQ1( "aa", game );
-        printQ1( "aaa", game );
-        printQ1( "aabb", game );
-        printQ1( "c", game );
+        SingleTable t1 = new SingleTable( 4, 74, 60.0 );
+        SingleTable t2 = new SingleTable( 8, 74, 70.0 );
+        SingleTable t3 = new SingleTable( 12, 76, 75.0 );
+
+        CombinedTable c1 = new CombinedTable( t1, t2 );
+        printCanSeat( c1, 9 );
+        printCanSeat( c1, 11 );
+        printDesire( c1 );
+        CombinedTable c2 = new CombinedTable( t2, t3 );
+        printCanSeat( c2, 18 );
+        printDesire( c2 );
+        t2.setViewQuality( 80 );
+        printDesire( c2 );
         }
 
-    public static void printQ1( String guess, WordMatch wm )
+    public static void printCanSeat( CombinedTable c1, int guests )
         {
-        System.out.println( String.format( "Guess [%s] Val [%d] ", guess, wm.scoreGuess( guess ) ) );
+        System.out.println( String.format( "    Can seat [%d] Val [%b] ", guests, c1.canSeat( guests ) ) );
         }
 
-    private static void runPartB()
+    public static void printDesire( CombinedTable c1 )
         {
-        System.out.println( "------------------------------------------------------" );
-        System.out.println( "Question 1 (b)" );
-        System.out.println();
-        WordMatch game = new WordMatch( "concatenation" );
-
-        printQ2( "ten", "nation", game );
-        printQ2( "con", "cat", game );
-
-        System.out.println();
-
-        }
-
-    public static void printQ2( String guess1, String guess2, WordMatch wm )
-        {
-        System.out.println(
-                String.format( "Guess1 Score [%s][%d] Guess1 Score [%s][%d] Best [%s] ",
-                        guess1, wm.scoreGuess( guess1 ),
-                        guess2, wm.scoreGuess( guess2 ),
-                        wm.findBetterGuess( guess1, guess2 ) ) );
+        System.out.println( String.format( "        Desireable [%.2f] ", c1.getDesireability() ) );
         }
 
     }

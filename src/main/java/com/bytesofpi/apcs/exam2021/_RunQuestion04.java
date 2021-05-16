@@ -1,5 +1,8 @@
 package com.bytesofpi.apcs.exam2021;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 public class _RunQuestion04
     {
 
@@ -15,48 +18,53 @@ public class _RunQuestion04
     public static void runPartA()
         {
         System.out.println( "------------------------------------------------------" );
-        System.out.println( "Question 1 (a)" );
-        System.out.println();
-        WordMatch wm = new WordMatch( "mississippi" );
-        printQ1( "i", wm );
-        printQ1( "iss", wm );
-        printQ1( "issipp", wm );
-        printQ1( "mississippi", wm );
+        System.out.println( "Question 4 (a)" );
+        int[][] arr = { { 2, 1, 0 },
+                { 1, 3, 2 },
+                { 0, 0, 0 },
+                { 4, 5, 6 } };
+        printQ1( arr, 0 );
+        printQ1( arr, 1 );
+        printQ1( arr, 2 );
+        printQ1( arr, 3 );
 
-        WordMatch game = new WordMatch( "aaaabb" );
-        printQ1( "a", game );
-        printQ1( "aa", game );
-        printQ1( "aaa", game );
-        printQ1( "aabb", game );
-        printQ1( "c", game );
         }
 
-    public static void printQ1( String guess, WordMatch wm )
+    public static void printQ1( int[][] arr, int row )
         {
-        System.out.println( String.format( "Guess [%s] Val [%d] ", guess, wm.scoreGuess( guess ) ) );
+        System.out.println( String.format( "Is row [%s] nonzero? [%b] ",
+                row,
+                ArrayResizer.isNonZeroRow( arr, row ) ) );
         }
 
     private static void runPartB()
         {
         System.out.println( "------------------------------------------------------" );
-        System.out.println( "Question 1 (b)" );
-        System.out.println();
-        WordMatch game = new WordMatch( "concatenation" );
-
-        printQ2( "ten", "nation", game );
-        printQ2( "con", "cat", game );
-
-        System.out.println();
+        System.out.println( "Question 4 (b)" );
+        int[][] arr = { { 2, 1, 0 },
+                { 1, 3, 2 },
+                { 0, 0, 0 },
+                { 4, 5, 6 } };
+        int[][] smaller = ArrayResizer.resize( arr );
+        printQ2( smaller );
 
         }
 
-    public static void printQ2( String guess1, String guess2, WordMatch wm )
+    public static void printQ2( int[][] arr2D )
         {
-        System.out.println(
-                String.format( "Guess1 Score [%s][%d] Guess1 Score [%s][%d] Best [%s] ",
-                        guess1, wm.scoreGuess( guess1 ),
-                        guess2, wm.scoreGuess( guess2 ),
-                        wm.findBetterGuess( guess1, guess2 ) ) );
+        System.out.println( Arrays.stream( arr2D )
+                .map( arr1D -> new StringBuilder( "    [" )
+                        .append( flat1D( arr1D ) )
+                        .append( "]" )
+                        .toString() )
+                .collect( Collectors.joining( "\n" ) ) );
+        }
+
+    public static String flat1D( int[] arr1D )
+        {
+        return Arrays.stream( arr1D )
+                .mapToObj( String::valueOf )
+                .collect( Collectors.joining( "," ) );
         }
 
     }

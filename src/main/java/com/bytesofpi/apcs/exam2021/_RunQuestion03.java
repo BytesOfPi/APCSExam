@@ -1,7 +1,10 @@
 package com.bytesofpi.apcs.exam2021;
 
+import java.util.ArrayList;
+
 public class _RunQuestion03
     {
+    private static ClubMembers cm = new ClubMembers();
 
     public static void main( String[] args )
         {
@@ -15,48 +18,34 @@ public class _RunQuestion03
     public static void runPartA()
         {
         System.out.println( "------------------------------------------------------" );
-        System.out.println( "Question 1 (a)" );
-        System.out.println();
-        WordMatch wm = new WordMatch( "mississippi" );
-        printQ1( "i", wm );
-        printQ1( "iss", wm );
-        printQ1( "issipp", wm );
-        printQ1( "mississippi", wm );
+        System.out.println( "Question 3 (a)" );
 
-        WordMatch game = new WordMatch( "aaaabb" );
-        printQ1( "a", game );
-        printQ1( "aa", game );
-        printQ1( "aaa", game );
-        printQ1( "aabb", game );
-        printQ1( "c", game );
-        }
-
-    public static void printQ1( String guess, WordMatch wm )
-        {
-        System.out.println( String.format( "Guess [%s] Val [%d] ", guess, wm.scoreGuess( guess ) ) );
+        cm.addMembers( new String[] { "Xin, Michael" }, 2017 );
+        cm.addMembers( new String[] { "Fox, Steve" }, 2018 );
+        cm.addMembers( new String[] { "Smith, Jane" }, 2019 );
+        cm.addMembers( new String[] { "Garcia, Maria" }, 2020 );
+        cm.printMembers();
         }
 
     private static void runPartB()
         {
         System.out.println( "------------------------------------------------------" );
-        System.out.println( "Question 1 (b)" );
-        System.out.println();
-        WordMatch game = new WordMatch( "concatenation" );
+        System.out.println( "Question 3 (b)" );
 
-        printQ2( "ten", "nation", game );
-        printQ2( "con", "cat", game );
+        cm.getYearMember( 2019 ).setInGoodStanding( false );
+        cm.getYearMember( 2017 ).setInGoodStanding( false );
+        System.out.println( "Show all members before" );
+        cm.printMembers();
 
-        System.out.println();
+        ArrayList<MemberInfo> list = cm.removeMembers( 2018 );
+        System.out.println( "Show all members after" );
+        cm.printMembers();
+        System.out.println( "Returned list" );
+        for ( MemberInfo mi : list )
+            {
+            System.out.println( "    " + mi );
+            }
 
-        }
-
-    public static void printQ2( String guess1, String guess2, WordMatch wm )
-        {
-        System.out.println(
-                String.format( "Guess1 Score [%s][%d] Guess1 Score [%s][%d] Best [%s] ",
-                        guess1, wm.scoreGuess( guess1 ),
-                        guess2, wm.scoreGuess( guess2 ),
-                        wm.findBetterGuess( guess1, guess2 ) ) );
         }
 
     }
